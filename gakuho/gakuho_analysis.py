@@ -18,7 +18,7 @@ def format_text(text):
 
     return text
 
-m = MeCab.Tagger('-Owakati -d /mnt/c/Users/atsus/mecab-ipadic-neologd/build/mecab-ipadic-2.7.0-20070801-neologd-20190613/')
+m = MeCab.Tagger('-Owakati -d /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd')
 
 with open("united.txt",encoding="UTF-8") as f:
     text = f.read()
@@ -49,6 +49,9 @@ model = word2vec.Word2Vec(data, size=200)
 
 while True:
     print("検索ワード")
-    ret = model.wv.most_similar(positive=input(">> ")) 
-    for item in ret:
-        print(item[0], item[1])
+    try: 
+        ret = model.wv.most_similar(positive=input(">> "))
+        for item in ret:
+                print(item[0], item[1])
+    except:
+        print("No hit")
